@@ -8,9 +8,15 @@
 <meta name="color-scheme" content="light dark" />
 <meta name="theme-color" content="#f8f2e7" media="(prefers-color-scheme: light)" />
 <meta name="theme-color" content="#191611" media="(prefers-color-scheme: dark)" />
+<link rel="canonical" href="https://colophon-home.pages.dev/" />
+<link rel="alternate" hreflang="it" href="https://colophon-home.pages.dev/" />
+<link rel="alternate" hreflang="en" href="https://colophon-home.pages.dev/en/" />
+<link rel="alternate" hreflang="x-default" href="https://colophon-home.pages.dev/" />
+<script>try{var _ct=localStorage.getItem("colophon-theme");if(_ct==="light"||_ct==="dark")document.documentElement.setAttribute("data-theme",_ct);}catch(e){}</script>
 <meta property="og:title" content="Colophon — EPUB editor nel tuo browser" />
 <meta property="og:description" content="Metadati, tipografia, note, OCR, immagini e accessibilità. Il tuo EPUB esce più pulito di com'è entrato, senza mai lasciare il tuo dispositivo." />
 <meta property="og:type" content="website" />
+<meta property="og:locale" content="it_IT" />
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='128' fill='%23fff6e0'/%3E%3Crect x='96' y='118' width='74' height='272' rx='18' fill='%230e6e7e'/%3E%3Crect x='96' y='160' width='74' height='14' fill='%23a6eeff'/%3E%3Crect x='96' y='334' width='74' height='14' fill='%23a6eeff'/%3E%3Crect x='184' y='86' width='82' height='304' rx='18' fill='%23f2b84b'/%3E%3Crect x='184' y='128' width='82' height='14' fill='%23fff6e0'/%3E%3Ccircle cx='225' cy='300' r='16' fill='%23fff6e0'/%3E%3Cg transform='rotate(14 372 390)'%3E%3Crect x='296' y='112' width='86' height='278' rx='18' fill='%23585c7d'/%3E%3Crect x='296' y='152' width='86' height='14' fill='%23dfe0ff'/%3E%3Crect x='296' y='334' width='86' height='14' fill='%23dfe0ff'/%3E%3C/g%3E%3Crect x='64' y='390' width='384' height='22' rx='11' fill='%2300363f'/%3E%3C/svg%3E" />
 <!--
   ============================================================
@@ -22,7 +28,8 @@
   Palette legata all'icona della PWA: crema, teal, ambra, periwinkle.
   Un unico file: zero build (solo Fraunces da Google Fonts).
   Pronto per Cloudflare Pages: preset "None", build vuota, output "/".
-  Bilingue IT/EN: toggle in alto a destra, default italiano.
+  Versione italiana — la pill "EN" in nav rimanda a /en/.
+  Tema chiaro/scuro: segue il sistema, switch manuale in nav (scelta ricordata).
   ============================================================
 -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -48,8 +55,25 @@
     --font-serif: "Fraunces", Georgia, "Times New Roman", serif;
     --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   }
+  :root[data-theme="dark"] {
+      --paper: #191611;
+      --paper-deep: #12100c;
+      --ink: #ede4d0;
+      --ink-soft: #b0a68e;
+      --hairline: #3d382c;
+      --accent: #6cd0e4;
+      --amber: #f2b84b;
+      --amber-fill: #f2b84b;
+      --peri: #aeb4d8;
+      --btn-bg: #ede4d0;
+      --btn-fg: #191611;
+      --nav-bg: rgba(25, 22, 17, .88);
+      --wash-a: rgba(242, 184, 75, .05);
+      --wash-b: rgba(108, 208, 228, .05);
+      --wash-c: rgba(174, 180, 216, .05);
+  }
   @media (prefers-color-scheme: dark) {
-    :root {
+    :root:not([data-theme="light"]) {
       --paper: #191611;
       --paper-deep: #12100c;
       --ink: #ede4d0;
@@ -71,10 +95,6 @@
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
   body { font-family: var(--font-sans); background: var(--paper); color: var(--ink); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
-
-  /* --- Lingua --- */
-  body:not(.en) .en { display: none !important; }
-  body.en .it { display: none !important; }
 
   /* --- Velature e grana della carta --- */
   .sky {
@@ -101,9 +121,12 @@
   .nav-right { display: flex; align-items: center; gap: .9rem; }
   .lang-btn { border: none; background: none; color: var(--ink-soft); font: 700 .78rem var(--font-sans); letter-spacing: .1em; cursor: pointer; padding: .3rem .2rem; border-bottom: 1px solid transparent; font-family: var(--font-sans); }
   .lang-btn:hover { color: var(--accent); border-bottom-color: var(--accent); }
+  .theme-btn { border: 1px solid var(--hairline); background: none; color: var(--ink-soft); border-radius: 2px; width: 2.2rem; height: 2.2rem; display: inline-grid; place-items: center; cursor: pointer; font-family: var(--font-serif); font-size: 1.05rem; line-height: 1; padding: 0; transition: color .15s, border-color .15s; }
+  .theme-btn:hover { color: var(--accent); border-color: var(--accent); }
   .cta-pill { background: var(--btn-bg); color: var(--btn-fg); border-radius: 2px; padding: .55rem 1.1rem; font-size: .8rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; text-decoration: none; transition: background .15s, color .15s; white-space: nowrap; }
   .cta-pill:hover { background: var(--accent); color: #fff; }
-  @media (prefers-color-scheme: dark) { .cta-pill:hover { color: #10201f; } }
+  :root[data-theme="dark"] .cta-pill:hover { color: #10201f; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .cta-pill:hover { color: #10201f; } }
   @media (max-width: 860px) { .nav-links { display: none; } }
 
   /* --- Hero, come un frontespizio --- */
@@ -118,7 +141,8 @@
   .cta-row { display: flex; gap: 1.4rem; justify-content: center; align-items: baseline; margin-top: 2.6rem; flex-wrap: wrap; }
   .btn-primary { background: var(--btn-bg); color: var(--btn-fg); border-radius: 2px; padding: 1rem 2.2rem; font-weight: 700; letter-spacing: .05em; font-size: .95rem; text-decoration: none; font-family: var(--font-sans); transition: background .15s, color .15s; }
   .btn-primary:hover { background: var(--accent); color: #fff; }
-  @media (prefers-color-scheme: dark) { .btn-primary:hover { color: #10201f; } }
+  :root[data-theme="dark"] .btn-primary:hover { color: #10201f; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .btn-primary:hover { color: #10201f; } }
   .btn-ghost { border: 1px solid var(--ink); color: var(--ink); background: transparent; border-radius: 2px; padding: 1rem 2.2rem; font-weight: 700; letter-spacing: .05em; font-size: .95rem; text-decoration: none; font-family: var(--font-sans); transition: border-color .15s, color .15s; }
   .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
   .trust { display: flex; gap: 1.3rem; justify-content: center; flex-wrap: wrap; margin-top: 2.6rem; }
@@ -240,15 +264,16 @@
   <div class="nav-inner">
     <a class="brand" href="#top"><span class="mark" data-icon="26"></span><span class="wordmark">Colophon</span></a>
     <nav class="nav-links">
-      <a href="#flow"><span class="it">Il flusso</span><span class="en">The flow</span></a>
-      <a href="#features"><span class="it">Le funzioni</span><span class="en">The features</span></a>
+      <a href="#flow"><span class="it">Il flusso</span></a>
+      <a href="#features"><span class="it">Le funzioni</span></a>
       <a href="#privacy">Privacy</a>
-      <a href="#install"><span class="it">Installazione</span><span class="en">Install</span></a>
-      <a href="#faq"><span class="it">Note</span><span class="en">Notes</span></a>
+      <a href="#install"><span class="it">Installazione</span></a>
+      <a href="#faq"><span class="it">Note</span></a>
     </nav>
     <div class="nav-right">
-      <button class="lang-btn" id="langBtn" type="button" aria-label="Switch language">EN</button>
-      <a class="cta-pill" href="https://colophon-editor.pages.dev/" target="_blank" rel="noopener"><span class="it">Apri l'app</span><span class="en">Open the app</span></a>
+<button class="theme-btn" id="themeBtn" type="button" aria-label="Passa al tema scuro">☾</button>
+      <a class="lang-btn" href="en/">EN</a>
+      <a class="cta-pill" href="https://colophon-editor.pages.dev/" target="_blank" rel="noopener"><span class="it">Apri l'app</span></a>
     </div>
   </div>
 </header>
@@ -259,62 +284,62 @@
     <div class="stamp"><span class="mark" data-icon="92"></span></div>
     <p class="overline">
       <span class="it">Editor EPUB · interamente nel tuo browser</span>
-      <span class="en">EPUB editor · entirely in your browser</span>
+      
     </p>
     <h1>
       <span class="it">Il tuo EPUB esce<span class="grad">più pulito di com'è entrato.</span></span>
-      <span class="en">Your EPUB comes out<span class="grad">cleaner than it went in.</span></span>
+      
     </h1>
     <p class="lead">
       <span class="it"><span class="dc">C</span>olophon è un editor EPUB che vive interamente nel tuo browser: metadati, tipografia, note, OCR, immagini, accessibilità. Nessun account, nessun upload — il libro non lascia mai il tuo dispositivo.</span>
-      <span class="en"><span class="dc">C</span>olophon is an EPUB editor that lives entirely in your browser: metadata, typography, footnotes, OCR, images, accessibility. No account, no uploads — your book never leaves your device.</span>
+      
     </p>
     <div class="cta-row">
-      <a class="btn-primary" href="https://colophon-editor.pages.dev/" target="_blank" rel="noopener"><span class="it">Prova l'app gratis</span><span class="en">Try the app free</span></a>
-      <a class="btn-ghost" href="#flow"><span class="it">Come funziona</span><span class="en">How it works</span></a>
+      <a class="btn-primary" href="https://colophon-editor.pages.dev/" target="_blank" rel="noopener"><span class="it">Prova l'app gratis</span></a>
+      <a class="btn-ghost" href="#flow"><span class="it">Come funziona</span></a>
     </div>
     <div class="trust">
-      <span class="tr"><span class="it">Nessuna registrazione</span><span class="en">No sign-up</span></span>
+      <span class="tr"><span class="it">Nessuna registrazione</span></span>
       <span class="dot">·</span>
-      <span class="tr"><span class="it">Elaborazione sul tuo dispositivo</span><span class="en">Processing on your device</span></span>
+      <span class="tr"><span class="it">Elaborazione sul tuo dispositivo</span></span>
       <span class="dot">·</span>
-      <span class="tr"><span class="it">Gratis</span><span class="en">Free</span></span>
+      <span class="tr"><span class="it">Gratis</span></span>
     </div>
   </section>
 
   <!-- Capitolo I — Il flusso -->
   <section class="block" id="flow">
     <div class="reveal head-center chapter">
-      <p class="kicker"><span class="n"><span class="it">Capitolo I</span><span class="en">Chapter I</span></span> — <span class="it">Il flusso</span><span class="en">The flow</span></p>
-      <h2><span class="it">Come funziona, in tre mosse</span><span class="en">How it works, in three moves</span></h2>
+      <p class="kicker"><span class="n"><span class="it">Capitolo I</span></span> — <span class="it">Il flusso</span></p>
+      <h2><span class="it">Come funziona, in tre mosse</span></h2>
       <p class="block-sub">
         <span class="it">Dall'EPUB sgualcito al file in ordine, senza attriti.</span>
-        <span class="en">From a crumpled EPUB to a tidy file, friction-free.</span>
+        
       </p>
     </div>
     <div class="steps">
       <div class="step reveal">
         <span class="step-num">1</span>
-        <h3><span class="it">Apri il libro</span><span class="en">Open the book</span></h3>
+        <h3><span class="it">Apri il libro</span></h3>
         <p>
           <span class="it">Trascina l'EPUB o scegli il file: viene aperto e analizzato nel tuo browser, senza alcun upload.</span>
-          <span class="en">Drop your EPUB in or pick the file: it's opened and analyzed in your browser, zero uploads.</span>
+          
         </p>
       </div>
       <div class="step reveal">
         <span class="step-num">2</span>
-        <h3><span class="it">Scegli le pulizie</span><span class="en">Pick the cleanups</span></h3>
+        <h3><span class="it">Scegli le pulizie</span></h3>
         <p>
           <span class="it">Metadati, tipografia, note, OCR, immagini: vedi cosa si può sistemare e controlli in anteprima cosa cambia.</span>
-          <span class="en">Metadata, typography, notes, OCR, images: see what can be fixed and preview what changes before it does.</span>
+          
         </p>
       </div>
       <div class="step reveal">
         <span class="step-num">3</span>
-        <h3><span class="it">Salva e leggi</span><span class="en">Save and read</span></h3>
+        <h3><span class="it">Salva e leggi</span></h3>
         <p>
           <span class="it">Scarichi l'EPUB ripulito, più leggero e in ordine, pronto per il reader che preferisci.</span>
-          <span class="en">You download the cleaned-up, lighter EPUB, ready for the reader of your choice.</span>
+          
         </p>
       </div>
     </div>
@@ -323,27 +348,27 @@
   <!-- Interludio — Prima & dopo -->
   <section class="block" id="before-after">
     <div class="reveal head-center chapter">
-      <p class="kicker"><span class="n"><span class="it">Interludio</span><span class="en">Interlude</span></span> — <span class="it">Prima &amp; dopo</span><span class="en">Before &amp; after</span></p>
-      <h2><span class="it">Vedi cosa cambia, prima di salvare</span><span class="en">See what changes, before you save</span></h2>
+      <p class="kicker"><span class="n"><span class="it">Interludio</span></span> — <span class="it">Prima &amp; dopo</span></p>
+      <h2><span class="it">Vedi cosa cambia, prima di salvare</span></h2>
       <p class="block-sub">
         <span class="it">Un frammento di libro, prima e dopo una passata di Colophon.</span>
-        <span class="en">A book fragment, before and after one pass of Colophon.</span>
+        
       </p>
     </div>
     <div class="compare">
       <figure class="page before reveal">
-        <figcaption><span class="lab"><span class="it">Prima</span><span class="en">Before</span></span></figcaption>
-        <p class="p-head"><span class="it">Capitolo 1. L'inizio della storia</span><span class="en">Chapter 1. The beginning</span></p>
-        <p class="p-body"><span class="it">«Questo è un testo con spazi&nbsp;&nbsp;doppi, trattini sbagliati e note¹ rotte.»</span><span class="en">«This is a text with double&nbsp;&nbsp;spaces, wrong dashes and broken notes¹.»</span></p>
-        <p class="p-body"><span class="it">Le parole a fine riga sono spezzate perché il li-<br />bro nasce da una scansione.</span><span class="en">Words at the end of a line are bro-<br />ken because the book came from a scan.</span></p>
-        <p class="meta"><span class="it">142 KB · codice disordinato</span><span class="en">142 KB · messy code</span></p>
+        <figcaption><span class="lab"><span class="it">Prima</span></span></figcaption>
+        <p class="p-head"><span class="it">Capitolo 1. L'inizio della storia</span></p>
+        <p class="p-body"><span class="it">«Questo è un testo con spazi&nbsp;&nbsp;doppi, trattini sbagliati e note¹ rotte.»</span></p>
+        <p class="p-body"><span class="it">Le parole a fine riga sono spezzate perché il li-<br />bro nasce da una scansione.</span></p>
+        <p class="meta"><span class="it">142 KB · codice disordinato</span></p>
       </figure>
       <figure class="page after reveal">
-        <figcaption><span class="lab"><span class="it">Dopo</span><span class="en">After</span></span></figcaption>
-        <p class="p-head"><span class="it">Capitolo 1 — L'inizio della storia</span><span class="en">Chapter 1 — The beginning</span></p>
-        <p class="p-body"><span class="it">«Questo è un testo pulito, con trattini corretti e note¹ funzionanti.»</span><span class="en">«This is a clean text, with proper dashes and working notes¹.»</span></p>
-        <p class="p-body"><span class="it">Le parole a fine riga sono state riattaccate perché il libro nasceva da una scansione.</span><span class="en">Words at the end of a line have been rejoined, because the book came from a scan.</span></p>
-        <p class="meta"><span class="fl">✽</span><span class="it">98 KB · EPUB 3 accessibile</span><span class="en">98 KB · accessible EPUB 3</span></p>
+        <figcaption><span class="lab"><span class="it">Dopo</span></span></figcaption>
+        <p class="p-head"><span class="it">Capitolo 1 — L'inizio della storia</span></p>
+        <p class="p-body"><span class="it">«Questo è un testo pulito, con trattini corretti e note¹ funzionanti.»</span></p>
+        <p class="p-body"><span class="it">Le parole a fine riga sono state riattaccate perché il libro nasceva da una scansione.</span></p>
+        <p class="meta"><span class="fl">✽</span><span class="it">98 KB · EPUB 3 accessibile</span></p>
       </figure>
     </div>
   </section>
@@ -351,100 +376,100 @@
   <!-- Capitolo II — Le funzioni -->
   <section class="block" id="features">
     <div class="reveal head-center chapter">
-      <p class="kicker"><span class="n"><span class="it">Capitolo II</span><span class="en">Chapter II</span></span> — <span class="it">Le funzioni</span><span class="en">The features</span></p>
-      <h2><span class="it">Tutto quello che un EPUB sognerebbe</span><span class="en">Everything an EPUB could wish for</span></h2>
+      <p class="kicker"><span class="n"><span class="it">Capitolo II</span></span> — <span class="it">Le funzioni</span></p>
+      <h2><span class="it">Tutto quello che un EPUB sognerebbe</span></h2>
       <p class="block-sub">
         <span class="it">Ogni funzione è un righello diverso con cui raddrizzare il libro. Scegli tu dove passare la mano.</span>
-        <span class="en">Each feature is a different ruler for straightening your book. You choose where to run it.</span>
+        
       </p>
     </div>
     <div class="feat-list">
       <article class="feat t1 reveal">
         <span class="feat-num">01</span>
-        <h3><span class="it">Metadati e copertina</span><span class="en">Metadata &amp; cover</span></h3>
+        <h3><span class="it">Metadati e copertina</span></h3>
         <p>
           <span class="it">Titolo, autori, serie, editore, lingua, data, tag, descrizione. E un controllo che legge il libro e suggerisce le correzioni: tu decidi quali applicare.</span>
-          <span class="en">Title, authors, series, publisher, language, date, tags, description. Plus a check that reads the book and suggests fixes: you decide which to apply.</span>
+          
         </p>
       </article>
       <article class="feat t2 reveal">
         <span class="feat-num">02</span>
-        <h3><span class="it">Pulizia tipografica</span><span class="en">Typographic cleanup</span></h3>
+        <h3><span class="it">Pulizia tipografica</span></h3>
         <p>
           <span class="it">Virgolette come si deve («…» o inglesi), apostrofi tipografici, puntini di sospensione veri, niente spazi doppi, dialoghi con la lineetta giusta.</span>
-          <span class="en">Proper quotes («…» or English), typographic apostrophes, real ellipses, no double spaces, dialogue lines with a proper em dash.</span>
+          
         </p>
       </article>
       <article class="feat t3 reveal">
         <span class="feat-num">03</span>
-        <h3><span class="it">OCR e scansioni</span><span class="en">OCR &amp; scans</span></h3>
+        <h3><span class="it">OCR e scansioni</span></h3>
         <p>
           <span class="it">Per i libri nati da PDF o scansioni: riattacca le parole spezzate a fine riga, ricuce i paragrafi interrotti, elimina i numeri di pagina vaganti. «Analizza» ti mostra tutto prima di toccare qualcosa.</span>
-          <span class="en">For books born from PDFs or scans: rejoins hyphenated line breaks, stitches interrupted paragraphs back together, removes stray page numbers. "Analyze" shows you everything before touching a thing.</span>
+          
         </p>
       </article>
       <article class="feat t1 reveal">
         <span class="feat-num">04</span>
-        <h3><span class="it">Note a piè di pagina</span><span class="en">Footnotes</span></h3>
+        <h3><span class="it">Note a piè di pagina</span></h3>
         <p>
           <span class="it">Verifica i rimandi, aggiunge i link di ritorno, rinumera le note irregolari e le trasforma in pop-up sui reader EPUB 3. I link rotti? Fuori.</span>
-          <span class="en">Checks note references, adds return links, renumbers irregular notes and turns them into pop-ups on EPUB 3 readers. Broken links? Gone.</span>
+          
         </p>
       </article>
       <article class="feat t2 reveal">
         <span class="feat-num">05</span>
-        <h3><span class="it">Titoli e struttura</span><span class="en">Headings &amp; structure</span></h3>
+        <h3><span class="it">Titoli e struttura</span></h3>
         <p>
           <span class="it">Trova i titoli scritti come semplice testo (grassetto, maiuscolo, «Capitolo 3») e li trasforma in heading veri: indice, navigazione e accessibilità migliorano di colpo.</span>
-          <span class="en">Finds headings written as plain text (bold, uppercase, "Chapter 3") and turns them into real headings: table of contents, navigation and accessibility suddenly improve.</span>
+          
         </p>
       </article>
       <article class="feat t3 reveal">
         <span class="feat-num">06</span>
-        <h3><span class="it">Pulizia del codice</span><span class="en">Code cleanup</span></h3>
+        <h3><span class="it">Pulizia del codice</span></h3>
         <p>
           <span class="it">Elimina span inutili, stili imposti e paragrafi vuoti lasciati da Word e dai convertitori. Il testo non cambia, il file dimagrisce e il tuo reader respira.</span>
-          <span class="en">Removes useless spans, imposed styles and empty paragraphs left behind by Word and converters. The text doesn't change, the file slims down and your reader can breathe.</span>
+          
         </p>
       </article>
       <article class="feat t1 reveal">
         <span class="feat-num">07</span>
-        <h3><span class="it">Trova e sostituisci</span><span class="en">Find &amp; replace</span></h3>
+        <h3><span class="it">Trova e sostituisci</span></h3>
         <p>
           <span class="it">Elimina testi, sostituisci con regole personalizzate, maiuscole/minuscole a piacere e — per i coraggiosi — espressioni regolari.</span>
-          <span class="en">Delete texts, replace with custom rules, match case if you like and — for the brave — regular expressions.</span>
+          
         </p>
       </article>
       <article class="feat t2 reveal">
         <span class="feat-num">08</span>
-        <h3><span class="it">Immagini e font</span><span class="en">Images &amp; fonts</span></h3>
+        <h3><span class="it">Immagini e font</span></h3>
         <p>
           <span class="it">Ricomprime le immagini per alleggerire il file, cambia la copertina e incorpora i font per cui hai una licenza: il libro appare uguale su ogni reader.</span>
-          <span class="en">Recompresses images to shrink the file, swaps the cover and embeds the fonts you're licensed to use: the book looks the same on every reader.</span>
+          
         </p>
       </article>
       <article class="feat t3 reveal">
         <span class="feat-num">09</span>
-        <h3><span class="it">Controllo ortografico</span><span class="en">Spell check</span></h3>
+        <h3><span class="it">Controllo ortografico</span></h3>
         <p>
           <span class="it">Trova le parole fuori dizionario e propone le correzioni. Italiano e inglese; i nomi propri, per rispetto, vengono lasciati in pace.</span>
-          <span class="en">Finds words that aren't in the dictionary and suggests corrections. Italian and English; proper nouns, out of respect, are left alone.</span>
+          
         </p>
       </article>
       <article class="feat t1 reveal">
         <span class="feat-num">10</span>
-        <h3><span class="it">EPUB 3 e accessibilità</span><span class="en">EPUB 3 &amp; accessibility</span></h3>
+        <h3><span class="it">EPUB 3 e accessibilità</span></h3>
         <p>
           <span class="it">Upgrade a EPUB 3 con indice compatibile anche coi reader vecchi, lingua dichiarata in ogni pagina e metadati di accessibilità.</span>
-          <span class="en">Upgrade to EPUB 3 with a table of contents older readers can still read, language declared on every page and accessibility metadata.</span>
+          
         </p>
       </article>
       <article class="feat wide t2 reveal">
         <span class="feat-num">11</span>
-        <h3><span class="it">Preset di stile</span><span class="en">Style presets</span></h3>
+        <h3><span class="it">Preset di stile</span></h3>
         <p>
           <span class="it">Salvi le tue impostazioni di stile, pulizia e ricerca e le riusi su ogni libro successivo. Il tuo gusto, ripetibile.</span>
-          <span class="en">Save your style, cleanup and search settings and reuse them on every following book. Your taste, repeatable.</span>
+          
         </p>
       </article>
     </div>
@@ -453,30 +478,30 @@
   <!-- Capitolo III — Privacy -->
   <section class="block" id="privacy">
     <div class="reveal head-center chapter">
-      <p class="kicker"><span class="n"><span class="it">Capitolo III</span><span class="en">Chapter III</span></span> — Privacy</p>
-      <h2><span class="it">Il tuo libro resta tuo. Punto.</span><span class="en">Your book stays yours. Full stop.</span></h2>
+      <p class="kicker"><span class="n"><span class="it">Capitolo III</span></span> — Privacy</p>
+      <h2><span class="it">Il tuo libro resta tuo. Punto.</span></h2>
       <p class="block-sub">
         <span class="it">Niente cloud, niente mani sulla copertina: l'EPUB viene aperto, sistemato e salvato nello stesso posto da dove è partito.</span>
-        <span class="en">No cloud, no hands on your cover: the EPUB is opened, fixed and saved in the very same place it started from.</span>
+        
       </p>
     </div>
     <div class="exlibris reveal">
       <div class="exlibris-grid">
         <div>
-          <h3><span class="it">Nessun backend</span><span class="en">No backend</span></h3>
-          <p><span class="it">Sito statico: zero server nostri, zero database, zero log di libri altrui.</span><span class="en">Static site: no servers of ours, no database, no logs of other people's books.</span></p>
+          <h3><span class="it">Nessun backend</span></h3>
+          <p><span class="it">Sito statico: zero server nostri, zero database, zero log di libri altrui.</span></p>
         </div>
         <div>
-          <h3><span class="it">Tutto client-side</span><span class="en">All client-side</span></h3>
-          <p><span class="it">Il libro viene aperto e riscritto nel tuo browser. Come una calcolatrice, ma per e-book.</span><span class="en">The book is opened and rewritten in your browser. Like a calculator, but for e-books.</span></p>
+          <h3><span class="it">Tutto client-side</span></h3>
+          <p><span class="it">Il libro viene aperto e riscritto nel tuo browser. Come una calcolatrice, ma per e-book.</span></p>
         </div>
         <div>
-          <h3><span class="it">Nessun upload</span><span class="en">No uploads</span></h3>
-          <p><span class="it">Il file non parte mai. Lo apri, lo sistemi, lo salvi: sempre in locale.</span><span class="en">The file never leaves. You open it, fix it, save it: all on your device.</span></p>
+          <h3><span class="it">Nessun upload</span></h3>
+          <p><span class="it">Il file non parte mai. Lo apri, lo sistemi, lo salvi: sempre in locale.</span></p>
         </div>
         <div>
-          <h3><span class="it">Nessun account</span><span class="en">No accounts</span></h3>
-          <p><span class="it">Niente email, niente password, niente «accetta i termini». Solo libri più belli.</span><span class="en">No email, no password, no "accept the terms". Just nicer books.</span></p>
+          <h3><span class="it">Nessun account</span></h3>
+          <p><span class="it">Niente email, niente password, niente «accetta i termini». Solo libri più belli.</span></p>
         </div>
       </div>
     </div>
@@ -485,28 +510,28 @@
   <!-- Capitolo IV — Installazione -->
   <section class="block" id="install">
     <div class="reveal head-center chapter">
-      <p class="kicker"><span class="n"><span class="it">Capitolo IV</span><span class="en">Chapter IV</span></span> — <span class="it">Installazione</span><span class="en">Installation</span></p>
-      <h2><span class="it">Un'app a tutti gli effetti</span><span class="en">A real app, no store required</span></h2>
+      <p class="kicker"><span class="n"><span class="it">Capitolo IV</span></span> — <span class="it">Installazione</span></p>
+      <h2><span class="it">Un'app a tutti gli effetti</span></h2>
       <p class="block-sub">
         <span class="it">Installala sul tuo dispositivo: icona, scorciatoie e aggiornamenti automatici, senza passare da uno store.</span>
-        <span class="en">Install it on your device: icon, shortcuts and automatic updates, bypassing any store.</span>
+        
       </p>
     </div>
     <div class="install-grid">
       <div class="col reveal">
         <h3>Android / Desktop</h3>
         <ol>
-          <li><span class="it">Apri l'app in <strong>Chrome</strong> o <strong>Edge</strong></span><span class="en">Open the app in <strong>Chrome</strong> or <strong>Edge</strong></span></li>
-          <li><span class="it">Nella barra degli indirizzi tocca l'icona <strong>«Installa app»</strong></span><span class="en">Tap the <strong>"Install app"</strong> icon in the address bar</span></li>
-          <li><span class="it">Avviala dall'icona come un'app normale</span><span class="en">Launch it from the icon like a regular app</span></li>
+          <li><span class="it">Apri l'app in <strong>Chrome</strong> o <strong>Edge</strong></span></li>
+          <li><span class="it">Nella barra degli indirizzi tocca l'icona <strong>«Installa app»</strong></span></li>
+          <li><span class="it">Avviala dall'icona come un'app normale</span></li>
         </ol>
       </div>
       <div class="col reveal">
         <h3>iOS / iPadOS</h3>
         <ol>
-          <li><span class="it">Apri l'app in <strong>Safari</strong></span><span class="en">Open the app in <strong>Safari</strong></span></li>
-          <li><span class="it">Tocca Condividi → <strong>Aggiungi a Home</strong></span><span class="en">Tap Share → <strong>Add to Home Screen</strong></span></li>
-          <li><span class="it">Avviala dall'icona come un'app normale</span><span class="en">Launch it from the icon like a regular app</span></li>
+          <li><span class="it">Apri l'app in <strong>Safari</strong></span></li>
+          <li><span class="it">Tocca Condividi → <strong>Aggiungi a Home</strong></span></li>
+          <li><span class="it">Avviala dall'icona come un'app normale</span></li>
         </ol>
       </div>
     </div>
@@ -515,33 +540,33 @@
   <!-- Note a margine (FAQ) -->
   <section class="block" id="faq">
     <div class="reveal head-center chapter">
-      <p class="kicker"><span class="it">Note a margine</span><span class="en">Margin notes</span></p>
-      <h2><span class="it">Tutto chiaro</span><span class="en">All clear</span></h2>
+      <p class="kicker"><span class="it">Note a margine</span></p>
+      <h2><span class="it">Tutto chiaro</span></h2>
     </div>
     <div class="faq-list">
       <details class="faq reveal">
-        <summary><span class="faq-q"><span class="fn">1.</span><span class="it">Quanto costa?</span><span class="en">How much does it cost?</span></span></summary>
-        <p><span class="it">Niente. Colophon è gratis. Se un giorno cambierà, lo scriviamo qui — e altrove — a lettere cubitali.</span><span class="en">Nothing. Colophon is free. If that ever changes, we'll write it here — and everywhere else — in very large letters.</span></p>
+        <summary><span class="faq-q"><span class="fn">1.</span><span class="it">Quanto costa?</span></span></summary>
+        <p><span class="it">Niente. Colophon è gratis. Se un giorno cambierà, lo scriviamo qui — e altrove — a lettere cubitali.</span></p>
       </details>
       <details class="faq reveal">
-        <summary><span class="faq-q"><span class="fn">2.</span><span class="it">Serve un account?</span><span class="en">Do I need an account?</span></span></summary>
-        <p><span class="it">No. Apri l'app, trascina un EPUB, fine. Non sappiamo nemmeno chi sei, il che è esattamente il punto.</span><span class="en">No. Open the app, drop an EPUB in, done. We don't even know who you are, which is precisely the point.</span></p>
+        <summary><span class="faq-q"><span class="fn">2.</span><span class="it">Serve un account?</span></span></summary>
+        <p><span class="it">No. Apri l'app, trascina un EPUB, fine. Non sappiamo nemmeno chi sei, il che è esattamente il punto.</span></p>
       </details>
       <details class="faq reveal">
-        <summary><span class="faq-q"><span class="fn">3.</span><span class="it">Il mio libro viene caricato da qualche parte?</span><span class="en">Is my book uploaded anywhere?</span></span></summary>
-        <p><span class="it">Mai. Tutta l'elaborazione avviene nel tuo browser: l'EPUB non lascia il tuo dispositivo.</span><span class="en">Never. All processing happens in your browser: the EPUB never leaves your device.</span></p>
+        <summary><span class="faq-q"><span class="fn">3.</span><span class="it">Il mio libro viene caricato da qualche parte?</span></span></summary>
+        <p><span class="it">Mai. Tutta l'elaborazione avviene nel tuo browser: l'EPUB non lascia il tuo dispositivo.</span></p>
       </details>
       <details class="faq reveal">
-        <summary><span class="faq-q"><span class="fn">4.</span><span class="it">Quali file posso aprire?</span><span class="en">What files can I open?</span></span></summary>
-        <p><span class="it">EPUB 2 ed EPUB 3. L'upgrade a EPUB 3 è opzionale e l'indice resta leggibile anche dai reader più vecchi.</span><span class="en">EPUB 2 and EPUB 3. The EPUB 3 upgrade is optional, and the table of contents stays readable even on older readers.</span></p>
+        <summary><span class="faq-q"><span class="fn">4.</span><span class="it">Quali file posso aprire?</span></span></summary>
+        <p><span class="it">EPUB 2 ed EPUB 3. L'upgrade a EPUB 3 è opzionale e l'indice resta leggibile anche dai reader più vecchi.</span></p>
       </details>
       <details class="faq reveal">
-        <summary><span class="faq-q"><span class="fn">5.</span><span class="it">Posso annullare le modifiche?</span><span class="en">Can I undo the changes?</span></span></summary>
-        <p><span class="it">Molte funzioni hanno un'anteprima o un'analisi che non tocca nulla, e il file nuovo lo salvi solo quando sei convinto. L'originale resta dov'era.</span><span class="en">Many features offer a preview or an analysis that changes nothing, and you only save the new file once you're happy with it. The original stays where it was.</span></p>
+        <summary><span class="faq-q"><span class="fn">5.</span><span class="it">Posso annullare le modifiche?</span></span></summary>
+        <p><span class="it">Molte funzioni hanno un'anteprima o un'analisi che non tocca nulla, e il file nuovo lo salvi solo quando sei convinto. L'originale resta dov'era.</span></p>
       </details>
       <details class="faq reveal">
-        <summary><span class="faq-q"><span class="fn">6.</span><span class="it">In quale lingua è l'app?</span><span class="en">What language is the app in?</span></span></summary>
-        <p><span class="it">Italiano e inglese, interfaccia inclusa: la scegli al primo avvio e la cambi quando vuoi. Il controllo ortografico conosce entrambe, e le virgolette «giuste» funzionano in ogni lingua le meriti.</span><span class="en">Italian and English, interface included: you pick one on first launch and can change it anytime. The spell checker speaks both, and proper «guillemets» work in any language that deserves them.</span></p>
+        <summary><span class="faq-q"><span class="fn">6.</span><span class="it">In quale lingua è l'app?</span></span></summary>
+        <p><span class="it">Italiano e inglese, interfaccia inclusa: la scegli al primo avvio e la cambi quando vuoi. Il controllo ortografico conosce entrambe, e le virgolette «giuste» funzionano in ogni lingua le meriti.</span></p>
       </details>
     </div>
   </section>
@@ -549,13 +574,13 @@
   <!-- CTA finale -->
   <section class="block final" id="start">
     <div class="reveal">
-      <h2><span class="it">Pronto a fare pulizia nella tua libreria?</span><span class="en">Ready to tidy up your library?</span></h2>
+      <h2><span class="it">Pronto a fare pulizia nella tua libreria?</span></h2>
       <p class="block-sub">
         <span class="it">Colophon è già online, gratis, nel tuo browser. Un trascinamento e sei dentro.</span>
-        <span class="en">Colophon is already online, free, in your browser. One drag and you're in.</span>
+        
       </p>
       <div class="cta-row">
-        <a class="btn-primary" href="https://colophon-editor.pages.dev/" target="_blank" rel="noopener"><span class="it">Apri Colophon</span><span class="en">Open Colophon</span></a>
+        <a class="btn-primary" href="https://colophon-editor.pages.dev/" target="_blank" rel="noopener"><span class="it">Apri Colophon</span></a>
       </div>
     </div>
   </section>
@@ -566,10 +591,10 @@
   <p class="fleuron">✽</p>
   <p class="colo-text">
     <span class="it">Questa pagina è composta in <em>Fraunces</em> e servita senza server, come piace a noi.</span>
-    <span class="en">This page is set in <em>Fraunces</em> and served with no servers, the way we like it.</span>
+    
   </p>
   <div class="foot-bottom">
-    <p>© 2026 Little Elsewhere — <span class="it">un editor, zero server, tutti i libri.</span><span class="en">one editor, zero servers, all the books.</span></p>
+    <p>© 2026 Little Elsewhere — <span class="it">un editor, zero server, tutti i libri.</span></p>
     <nav class="foot-links">
       <a href="https://colophon-editor.pages.dev/" target="_blank" rel="noopener">Colophon</a>
       <a href="https://soundscript-home.pages.dev/" target="_blank" rel="noopener">SoundScript</a>
@@ -617,22 +642,27 @@
     document.querySelectorAll(".reveal").forEach(function (el) { el.classList.add("visible"); });
   }
 
-  /* ---------- Lingua IT/EN ---------- */
-  var langBtn = document.getElementById("langBtn");
-  var titles = { it: "Colophon — EPUB editor nel tuo browser", en: "Colophon — Your EPUB editor, in the browser" };
-  function setLang(en) {
-    document.body.classList.toggle("en", en);
-    document.documentElement.lang = en ? "en" : "it";
-    document.title = titles[en ? "en" : "it"];
-    langBtn.textContent = en ? "IT" : "EN";
-    try { localStorage.setItem("colophon-lang", en ? "en" : "it"); } catch (e) { /* sandbox: pazienza */ }
+  /* ---------- Tema chiaro/scuro ---------- */
+  var themeBtn = document.getElementById("themeBtn");
+  var darkMq = window.matchMedia ? window.matchMedia("(prefers-color-scheme: dark)") : null;
+  function currentTheme() {
+    var t = document.documentElement.getAttribute("data-theme");
+    if (t === "light" || t === "dark") return t;
+    return darkMq && darkMq.matches ? "dark" : "light";
   }
-  var saved = null;
-  try { saved = localStorage.getItem("colophon-lang"); } catch (e) { /* idem */ }
-  if (saved === "en") setLang(true);
-  langBtn.addEventListener("click", function () {
-    setLang(!document.body.classList.contains("en"));
+  function themeUI() {
+    var dark = currentTheme() === "dark";
+    themeBtn.textContent = dark ? "☀" : "☾";
+    themeBtn.setAttribute("aria-label", dark ? "Passa al tema chiaro" : "Passa al tema scuro");
+  }
+  themeUI();
+  themeBtn.addEventListener("click", function () {
+    var next = currentTheme() === "dark" ? "light" : "dark";
+    document.documentElement.setAttribute("data-theme", next);
+    themeUI();
+    try { localStorage.setItem("colophon-theme", next); } catch (e) { /* sandbox: pazienza */ }
   });
+  if (darkMq && darkMq.addEventListener) darkMq.addEventListener("change", themeUI);
 })();
 </script>
 </body>

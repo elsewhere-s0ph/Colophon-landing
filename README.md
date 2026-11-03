@@ -1,11 +1,12 @@
 # Colophon — Landing page
 
 Landing page statica per **Colophon**, l'editor EPUB nel browser di Little Elsewhere.
-Un unico file `index.html`: zero build, zero dipendenze (solo il font Fraunces da Google Fonts).
-Bilingue IT/EN con toggle in alto a destra; identità editoriale: carta, inchiostro, Fraunces, capitoli e note a margine.
+Due pagine statiche: `index.html` (italiano) e `en/index.html` (inglese), collegate dalle pill EN/IT nella nav.
+Identità editoriale: carta, inchiostro, Fraunces, capitoli e note a margine.
+Tema chiaro/scuro: segue il sistema, con switch manuale in nav (la scelta viene ricordata e condivisa tra le due lingue).
 
 - **App**: https://colophon-editor.pages.dev/
-- **Landing (target)**: https://colophon-home.pages.dev/
+- **Landing (target)**: https://colophon-home.pages.dev/ · https://colophon-home.pages.dev/en/
 
 ## Deploy su Cloudflare Pages
 
@@ -15,6 +16,7 @@ Bilingue IT/EN con toggle in alto a destra; identità editoriale: carta, inchios
 4. Framework preset: **None** · Build command: (vuoto) · Build output directory: `/`
 5. **Save and Deploy**
 
+`/en/` funziona senza configurazioni: l'hosting statico serve `en/index.html` sulla URL pulita.
 Da quel momento ogni push su `main` pubblica automaticamente la nuova versione.
 
 ## Anteprima locale
@@ -24,6 +26,12 @@ Apri `index.html` nel browser. Fine.
 ## Struttura
 
 ```
-index.html   ← l'intero sito: CSS, JS, SVG e favicon inline
-README.md    ← questo file
+index.html      <- versione italiana
+en/index.html   <- versione inglese
+README.md       <- questo file
 ```
+
+## Modifiche
+
+Le modifiche si possono iterare nei canvas "Colophon — Landing" (IT) e "Colophon — Landing (EN)",
+poi si pusha qui, oppure editando direttamente il file nel repo: il deploy è automatico.
