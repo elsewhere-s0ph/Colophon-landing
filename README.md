@@ -4,6 +4,7 @@ Landing page statica per **Colophon**, l'editor EPUB nel browser di Little Elsew
 Due pagine statiche: `index.html` (italiano) e `en/index.html` (inglese), collegate dalle pill EN/IT nella nav.
 Identità editoriale: carta, inchiostro, Fraunces, capitoli e note a margine.
 Tema chiaro/scuro: segue il sistema, con switch manuale in nav (la scelta viene ricordata e condivisa tra le due lingue).
+SEO & social: og:image + twitter:card con anteprime localizzate, JSON-LD SoftwareApplication (offers price 0), hreflang incrociati, canonical.
 
 - **App**: https://colophon-editor.pages.dev/
 - **Landing (target)**: https://colophon-home.pages.dev/ · https://colophon-home.pages.dev/en/
@@ -28,6 +29,11 @@ Apri `index.html` nel browser. Fine.
 ```
 index.html      <- versione italiana
 en/index.html   <- versione inglese
+og.jpg          <- anteprima social (og:image) italiana
+en/og.jpg       <- anteprima social (og:image) inglese
+robots.txt      <- indicizzazione
+sitemap.xml     <- mappa del sito (it + en, con hreflang)
+_headers        <- CSP con hash SHA-256 degli script inline, HSTS, nosniff, X-Frame-Options
 README.md       <- questo file
 ```
 
